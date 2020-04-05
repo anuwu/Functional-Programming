@@ -1,4 +1,4 @@
--- Tail recursive fibonacci. Call as ---> (fib 5)
+#lang racket
 (define (fib num)
     (define (fib-tail acc1 acc2 n)
       (if (= n 0) acc2
