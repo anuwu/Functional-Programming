@@ -1,0 +1,18 @@
+-- Plain factorial. Call as ---> (fact 4)
+(define fact (lambda (n)
+     (if (= n 0) 1
+         (* n (fact (- n 1))))))
+
+-- Tail factorial. Call as ---> (fact 4 1)
+(define fact-tail (lambda (n acc)
+     if (= n 0) acc
+       (fact-tail (- n 1) (* n acc))))
+
+-- Tail factorial with one argument. Encloses the above function ---> (fact 4)
+(define fact (lambda (num)
+    (define tail (lambda (acc n)
+      ( if (= n 0)
+           acc
+           (tail (* acc n) (- n 1)))))
+      (tail 1 num)))
+

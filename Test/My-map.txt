@@ -1,0 +1,31 @@
+> (my-map timesten '(1 2 3 4))
+'(10 20 30 40)
+> (my-map timesten (list '2 '4 '6))
+'(20 40 60)
+> (my-map timesten (list 2 5 7))
+'(20 50 70)
+> 
+
+-- My map in tail recursive. Check appendcons function definition in "append.txt". Although appendconds itself is not tail recursive, the overall function is tail recursive.
+
+(define (my-map fn lst)
+    (define (my-map-tail fn l acc)
+      (if (null? l) acc
+      (my-map-tail fn (cdr l) (my-append acc (fn (car l))))))
+    (my-map-tail fn lst '()))
+
+
+-- My map in tail recursive. Uses a tail-recursive reverse function at end. Check "reverse.txt". Overall tail-recursive.
+
+(define (my-map fn lst)
+    (define (my-map-tail fn acc l)
+      (if (null? l) acc
+      (my-map-tail fn (cons (fn (car l)) acc) (cdr l))))
+    (reverse(my-map-tail fn '() lst)))
+
+
+-- My map normal
+
+(define (my-map fn list)
+	(if (null? list) '()
+	(cons (fn (car list)) (my-map fn (cdr list)))))

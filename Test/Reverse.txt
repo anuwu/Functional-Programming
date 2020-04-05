@@ -1,0 +1,7 @@
+-- Reverse in tail recursive form.
+
+(define (my-reverse lst)
+    (define (reverse-tail l acc)
+      (if (null? l) acc
+      (reverse-tail (cdr l) (cons (car l) acc))))
+    (reverse-tail lst '()))

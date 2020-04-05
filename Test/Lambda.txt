@@ -1,0 +1,1 @@
+(define timestwo (lambda (n) (* n 2)))

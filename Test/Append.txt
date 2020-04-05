@@ -1,0 +1,24 @@
+-- Appending a cons cell (term for an element in a list) at the end of the list
+(define my-append (lambda (lst num)
+   (if (null? lst) (cons num '())
+        (cons (car lst) (my-append (cdr lst) num)))))
+
+-- Appending a cons cell with reverse
+(define (my-append lst num) (my-reverse (cons num (my-reverse lst))))
+
+-- Appending one list to another (normal)
+(define (my-append lst1 lst2)
+    (if (null? lst1) lst2
+    (cons (car lst1) (my-append (cdr lst1) lst2))))
+
+-- Appending one list to another (tail-recursive)
+(define (my-append lst1 lst2)
+	(define (app-list-help revlst1 acc)
+		(if (null? revlst1) acc
+		    (app-list-help (cdr revlst1) (cons (car revlst1) acc))
+		))
+	(app-list-help (my-reverse lst1) lst2))
+
+
+
+

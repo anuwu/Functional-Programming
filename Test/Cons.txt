@@ -1,0 +1,6 @@
+> (cons 'anwesh 'bhattacharya)
+'(anwesh . bhattacharya)
+> (cons 'anwesh '(bhatacharya))
+'(anwesh bhatacharya)
+> (cons 'anwesh '())
+'(anwesh)

@@ -1,0 +1,22 @@
+-- Normal
+
+(define (remove-if fn lst)
+    (cond
+      ((null? lst) '())
+      ((fn (car lst)) (remove-if fn (cdr lst)))
+      (else (cons (car lst) (remove-if fn (cdr lst))))
+    )
+  )
+
+-- Tail Recursive (with reverse)
+
+(define (remove-if fn lst)
+    (define (remif-tail fn lst acc)
+      (cond
+        ((null? lst) (reverse acc))
+        ((fn (car lst)) (remif-tail fn (cdr lst) acc))
+        (else (remif-tail fn (cdr lst) (cons (car lst) acc)))
+      )
+    )
+    (remif-tail fn lst '())
+  )
