@@ -1,12 +1,10 @@
--- Lenght of a list tail recursive
-
+#lang racket
 (define (my-length lst)
     (define (length-tail lst count)
       (if (null? lst) count
           (length-tail (cdr lst) (+ count 1))))
       (length-tail lst 0))
 
+(define (my-length1 lst)
+	( if (null? lst) 0 (+ 1 (my-length1 (cdr lst)))))
 
--- Lenght of a list normal
-(define (my-length lst)
-	( if (null? lst) 0 (+ 1 my-length (cdr lst))))
