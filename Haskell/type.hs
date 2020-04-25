@@ -26,3 +26,6 @@ solveQuad (a, b, c)
 	| otherwise = Complex ((-b/(2*a)) (sqrt(-disc))/(2*a))
 	where disc = b^2 - 4*a*c
 -}
+
+isFour :: Int -> Bool
+isFour x = let four = 4 in (x == four)
