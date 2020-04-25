@@ -19,6 +19,23 @@ absVal (Complex a b) = sqrt (a^2 + b^2)
 (|==|) :: Complex -> Complex -> Bool
 (|==|) (Complex x1 y1) (Complex x2 y2) = absVal (Complex x1 y1) == absVal (Complex x2 y2)
 
+-----------------------------------------------------------------------------------------------------
+
+data QuadEq = QuadEq Double Double Double
+
+instance Show QuadEq where
+	show (QuadEq a b c) = show a ++ "x^2 " ++ show b ++ "x " ++ show c
+
+instance Eq QuadEq where
+	(==) (QuadEq a1 b1 c1) (QuadEq a2 b2 c2) = (a1 == a2) && (b1 == b2) && (c1 == c2)
+
+{-|
+solveQuad :: QuadEq -> (Complex, Complex)
+solveQuad (QuadEq a b c) = let disc = b^2 - 4*a*c
+								t1 = (-b/(2*a)
+								t2 = sqrt(abs(disc))/(2*a) in (if (disc >= 0) then (Complex 0 0, Comple 0 0) else (Complex 0 0, Complex 0 0))
+-}
+
 {-|
 solveQuad :: (Num a) => (a, a, a) -> Complex
 solveQuad (a, b, c)
