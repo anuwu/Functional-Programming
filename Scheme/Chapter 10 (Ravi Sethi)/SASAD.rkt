@@ -1,4 +1,3 @@
-#lang racket
 ; Returns a list after trimming consecutive elements.
 
 ; ---------------- Examples -------------------

@@ -1,4 +1,3 @@
-#lang racket
 ; Returns the number of times an element occurs consecutively.
 ; ------------ Examples -------------------
 ; > (cntr '(a b a a a c c))

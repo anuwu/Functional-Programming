@@ -1,4 +1,3 @@
-#lang racket
 ; Returns only the repeating elements in a list.
 
 ; ------------------- Examples ----------------

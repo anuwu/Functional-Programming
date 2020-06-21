@@ -1,4 +1,3 @@
-#lang racket
 ; (my-reverse '(1 2 3 4 5))
 
 (define (my-reverse lst)

@@ -1,4 +1,3 @@
-#lang racket
 ; Returns the elements of a list that are non-repeating
 ; ---------------------- Examples ----------------------
 ; > (nr '(a b c d))

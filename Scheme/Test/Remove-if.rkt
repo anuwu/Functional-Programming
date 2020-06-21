@@ -1,5 +1,5 @@
-#lang racket
 ; (remove-if1 even? '(1 2 3 4))
+
 (define (remove-if1 fn lst)
     (cond
       ((null? lst) '())

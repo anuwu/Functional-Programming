@@ -1,4 +1,3 @@
-#lang racket
 (define (my-length lst)
     (define (length-tail lst count)
       (if (null? lst) count

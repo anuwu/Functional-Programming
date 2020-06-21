@@ -1,4 +1,3 @@
-#lang racket
 (define (my-reverse lst)
     (define (reverse-tail l acc)
       (if (null? l) acc

@@ -1,4 +1,3 @@
-#lang racket
 (define (fib num)
     (define (fib-tail acc1 acc2 n)
       (if (= n 0) acc2

@@ -1,4 +1,3 @@
-#lang racket
 ; Run as (my-map timesten '(1 2 3 4))
 
 ; --------- Helper definitions -----------
