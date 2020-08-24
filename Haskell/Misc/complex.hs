@@ -1,4 +1,3 @@
-dividesEvenly x y = (y `div` x) * x == y
 data Complex = Complex Double Double
 
 instance Show Complex where
@@ -24,7 +23,7 @@ absVal (Complex a b) = sqrt (a^2 + b^2)
 data QuadEq = QuadEq Double Double Double
 
 instance Show QuadEq where
-	show (QuadEq a b c) = show a ++ "x^2 " ++ show b ++ "x " ++ show c
+	show (QuadEq a b c) = show a ++ "x^2" ++ (if b > 0 then "+" else "-") ++ show b ++ "x" ++ (if c > 0 then "+" else "-") ++ show c
 
 instance Eq QuadEq where
 	(==) (QuadEq a1 b1 c1) (QuadEq a2 b2 c2) = (a1 == a2) && (b1 == b2) && (c1 == c2)
@@ -43,6 +42,3 @@ solveQuad (a, b, c)
 	| otherwise = Complex ((-b/(2*a)) (sqrt(-disc))/(2*a))
 	where disc = b^2 - 4*a*c
 -}
-
-isFour :: Int -> Bool
-isFour x = let four = 4 in (x == four)
