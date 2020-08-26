@@ -18,22 +18,24 @@ lexlist = [1,2,3,4,5,6,7,8,9]
 -- Converts a list of integers to a whole number
 listToNum :: [Int] -> Int
 listToNum [] = 0
-listToNum lst = do
-                let ltn lst
+listToNum lst = let ltn lst
                         | null lst      = 0
-                        | otherwise     = (head lst) + 10*(ltn (tail lst))
-                ltn (reverse lst) -- Need to reverse the list first
+                        | otherwise     = x + 10*(ltn xs)
+                        where (x:xs) = lst
+                in ltn rev
+                where rev = reverse (lst)  -- Need to reverse the list first
 
 -- Prints one line of lex's pattern
 lexLine :: Int -> IO()
-lexLine x = do
-            let num = listToNum (take x lexlist)
-            let str = show (num) ++ " x 9 + " ++ show (x + 1) ++ " = " ++ show (num*9 + x + 1)
-            putStrLn str
+lexLine x = putStrLn str
+            where num = listToNum (take x lexlist)
+                  str = show (num) ++ " x 9 + " ++ show (x + 1) ++ " = " ++ show (num*9 + x + 1)
+
 -- Prints all lines of lex's pattern
 lexPrint :: Int -> IO()
-lexPrint n = if n == 0 
-             then lexLine 0
-             else do
-                  lexPrint (n-1)
-                  lexLine n
+lexPrint n
+    | n == 0        = lexLine 0
+    | n < 10        = do
+                    lexPrint (n-1)
+                    lexLine n
+    | otherwise     = putStrLn "Wrong number buddy"
