@@ -1,3 +1,7 @@
+{-
+One of my first noob attempts at defining a
+custom data type for a complex number
+-}
 data Complex = Complex Double Double
 
 instance Show Complex where
@@ -20,6 +24,7 @@ absVal (Complex a b) = sqrt (a^2 + b^2)
 
 -----------------------------------------------------------------------------------------------------
 
+-- Data type to represent a quadratic equation by its co-efficients
 data QuadEq = QuadEq Double Double Double
 
 instance Show QuadEq where
@@ -28,14 +33,16 @@ instance Show QuadEq where
 instance Eq QuadEq where
 	(==) (QuadEq a1 b1 c1) (QuadEq a2 b2 c2) = (a1 == a2) && (b1 == b2) && (c1 == c2)
 
-{-|
+-- Failed attempts at writing a function to find the roots (real or complex) of a
+-- quadratic equation given its co-efficients
+{-
 solveQuad :: QuadEq -> (Complex, Complex)
 solveQuad (QuadEq a b c) = let disc = b^2 - 4*a*c
 								t1 = (-b/(2*a)
 								t2 = sqrt(abs(disc))/(2*a) in (if (disc >= 0) then (Complex 0 0, Comple 0 0) else (Complex 0 0, Complex 0 0))
 -}
 
-{-|
+{-
 solveQuad :: (Num a) => (a, a, a) -> Complex
 solveQuad (a, b, c)
 	| disc >= 0 = Complex ((-b + sqrt(disc))/(2*a) 0)

@@ -1,3 +1,4 @@
+-- For an integer n, generates the first n Catalan numbers
 catalan :: Int -> [Integer]
 catalan 0 = 1:[]
 catalan n = sum (zipWith (*) cat (reverse cat)) : cat
