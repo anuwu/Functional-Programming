@@ -99,3 +99,8 @@ postOrder (Node n lf rt) = postOrder lf ++ postOrder rt ++ [n]
 -- Function to sort a list by taking help of a tree
 treeSort :: (Ord a) => [a] -> [a]
 treeSort lst = inOrder $ fromListLf $ treeIfy lst
+
+-- Functor for the BST type
+instance Functor Tree where
+        fmap f NoRoot             = NoRoot
+        fmap f (Node n lf rt)     = Node (f n) (fmap f lf) (fmap f rt)
