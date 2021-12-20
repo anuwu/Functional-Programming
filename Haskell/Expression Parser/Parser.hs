@@ -1,5 +1,6 @@
 -- Functional parsing library from chapter 13 of Programming in Haskell,
 -- Graham Hutton, Cambridge University Press, 2016.
+-- Taken from http://www.cs.nott.ac.uk/~pszgmh/Parsing.hs
 
 module Parser (module Parser, module Control.Applicative) where
 
