@@ -1,16 +1,14 @@
 sumPow_aux :: Int -> [Int] -> Int -> Int
 sumPow_aux acc lst tot = 
-    if acc > tot
-        then 0 
+    if acc > tot then 0 
     else (
         if acc == tot then 1
-        else 
-            case lst of
-                [] -> 0
-                (x:xs) ->
-                    let with = sumPow_aux (acc + x) xs tot in
-                    let without = sumPow_aux acc xs tot in
-                    with + without
+        else case lst of
+            [] -> 0
+            (x:xs) ->
+                let with = sumPow_aux (acc + x) xs tot in
+                let without = sumPow_aux acc xs tot in
+                with + without
     )
 
 root :: Int -> Int -> Int
