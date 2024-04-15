@@ -36,9 +36,25 @@ myAny pred = not . and . map (not . pred)
 
 mySplitAt :: Int -> [a] -> ([a], [a])
 mySplitAt ind lst
-    | len == 0      = ([], [])
-    | ind <= 0      = ([], lst)
-    | otherwise     = ((head lst):l1, l2)
+    | ind <= 0          = ([], lst)
+    | [] <- lst         = ([], [])
+    | (l:ls) <- lst     = let (l1, l2) = mySplitAt (ind-1) ls in (l:l1, l2)
+
+myIterate :: (a -> a) -> a -> [a]
+myIterate f v = v : (myIterate f (f v))
+
+myTakeWhile :: (a -> Bool) -> [a] -> [a]
+myTakeWhile f [] = []
+myTakeWhile f lst
+    | f l           = l : myTakeWhile f ls
+    | otherwise     = []
     where
-        (l1, l2) = mySplitAt (ind - 1) (tail lst)
-        len = length lst
+        (l:ls) = lst
+
+myDropWhile :: (a -> Bool) -> [a] -> [a]
+myDropWhile f [] = []
+myDropWhile f lst
+    | f l           = myDropWhile f ls
+    | otherwise     = lst
+    where
+        (l:ls) = lst
