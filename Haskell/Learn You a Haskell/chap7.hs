@@ -58,3 +58,14 @@ myDropWhile f lst
     | otherwise     = lst
     where
         (l:ls) = lst
+
+mySpan :: (a -> Bool) -> [a] -> ([a], [a])
+mySpan f [] = ([], [])
+mySpan f lst
+    | f l           = let (fs, sn) = mySpan f ls in (l:fs, sn)
+    | otherwise     = ([], lst)
+    where
+        (l:ls) = lst
+
+myBreak :: (a -> Bool) -> [a] -> ([a], [a])
+myBreak f = mySpan (not . f)
