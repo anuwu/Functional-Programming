@@ -88,8 +88,11 @@ myTails [] = [[]]
 myTails (x:xs) = (x:xs) : (myTails $ xs)
 
 myInits :: [a] -> [[a]]
-myInits [] = []
+myInits [] = [[]]
 myInits (x:xs) = [] : map (x:) (myInits xs) 
+
+myTails1 :: [a] -> [[a]]
+myTails1 = map reverse . reverse . myInits . reverse
 
 myInits1 :: [a] -> [[a]]
 myInits1 = map reverse . reverse . myTails . reverse
