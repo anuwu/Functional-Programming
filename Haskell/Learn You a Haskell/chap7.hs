@@ -69,3 +69,16 @@ mySpan f lst
 
 myBreak :: (a -> Bool) -> [a] -> ([a], [a])
 myBreak f = mySpan (not . f)
+
+myGroup :: (Eq a) => [a] -> [[a]]
+myGroup [] = []
+myGroup [x] = [[x]]
+myGroup (x:xs) = 
+    let (xss, cnt) = dropWhileCnt (==x) xs in (replicate (cnt+1) x):(myGroup xss)
+    where
+        dropWhileCnt f [] = ([], 0)
+        dropWhileCnt f lst
+            | f l       = let (lst1, cnt1) = dropWhileCnt f ls in (lst1, cnt1 + 1)
+            | otherwise = (lst, 0)
+            where
+                (l:ls) = lst
