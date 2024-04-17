@@ -82,3 +82,14 @@ myGroup (x:xs) =
             | otherwise = (lst, 0)
             where
                 (l:ls) = lst
+
+myTails :: [a] -> [[a]]
+myTails [] = [[]]
+myTails (x:xs) = (x:xs) : (myTails $ xs)
+
+myInits :: [a] -> [[a]]
+myInits [] = []
+myInits (x:xs) = [] : map (x:) (myInits xs) 
+
+myInits1 :: [a] -> [[a]]
+myInits1 = map reverse . reverse . myTails . reverse
