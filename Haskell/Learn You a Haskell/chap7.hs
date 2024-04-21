@@ -143,3 +143,37 @@ myElemIndex ele lst = mEIHelp ele lst 0
         mEIHelp ele (x:xs) cnt
             | ele == x      = Just cnt
             | otherwise     = mEIHelp ele xs (cnt + 1)
+
+myElemIndices :: (Eq a) => a -> [a] -> [Int]
+myElemIndices ele lst = mEIHelp ele lst 0
+    where
+        mEIHelp ele [] cnt = []
+        mEIHelp ele (x:xs) cnt 
+            | ele == x      = cnt : ans
+            | otherwise     = ans
+            where
+                ans = mEIHelp ele xs (cnt + 1)
+
+myFindIndex :: (a -> Bool) -> [a] -> Maybe Int
+myFindIndex f lst = mFIHelp f lst 0
+    where
+        mFIHelp f [] cnt = Nothing
+        mFIHelp f (x:xs) cnt
+            | f x           = Just cnt
+            | otherwise     = mFIHelp f xs (cnt + 1) 
+
+myFindIndices :: (a -> Bool) -> [a] -> [Int]
+myFindIndices f lst = mFIHelp f lst 0
+    where
+        mFIHelp f [] cnt = []
+        mFIHelp f (x:xs) cnt 
+            | f x           = cnt : ans
+            | otherwise     = ans
+            where
+                ans = mFIHelp f xs (cnt + 1)
+
+myElemIndex1 :: (Eq a) => a -> [a] -> Maybe Int
+myElemIndex1 ele = myFindIndex (== ele)
+
+myElemIndices1 :: (Eq a) => a -> [a] -> [Int]
+myElemIndices1 ele = myFindIndices (== ele)
