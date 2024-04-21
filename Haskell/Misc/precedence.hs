@@ -16,3 +16,9 @@ prec9_2 = (mul . add . sub) 4
         sub = (+(-2))
         add = (+10)
         mul = (*5)
+
+{-
+Evaluates as 9:[]
+insead of 4 + [5] --> error
+-}
+prec6_1 = 4+5::[]

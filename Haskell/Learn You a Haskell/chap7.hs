@@ -96,3 +96,50 @@ myTails1 = map reverse . reverse . myInits . reverse
 
 myInits1 :: [a] -> [[a]]
 myInits1 = map reverse . reverse . myTails . reverse
+
+mySearch :: (Eq a) => [a] -> [a] -> Bool
+mySearch needle haystack =
+    foldl (\acc x -> acc || (needle == take nlen x)) False $ myTails haystack
+    where
+        nlen = length needle
+
+myIsPrefixOf :: (Eq a) => [a] -> [a] -> Bool
+myIsPrefixOf needle haystack = needle == take nlen haystack where nlen = length needle
+
+myIsSuffixOf :: (Eq a) => [a] -> [a] -> Bool
+myIsSuffixOf needle haystack = 
+    needle == takeback nlen haystack
+    where
+        takeback l = reverse . take l . reverse
+        nlen = length needle
+
+myElem :: (Eq a) => a -> [a] -> Bool
+myElem x [] = False
+myElem x (y:ys)
+    | x == y    = True
+    | otherwise = myElem x ys
+
+myNotElem :: (Eq a) => a -> [a] -> Bool
+myNotElem x = (not . (myElem x))
+
+myPartition :: (a -> Bool) -> [a] -> ([a], [a])
+myPartition f [] = ([], [])
+myPartition f (x:xs)
+    | f x           = (x:x1, x2)
+    | otherwise     = (x1, x:x2)
+    where
+        (x1, x2) = myPartition f xs
+
+myFind :: (a -> Bool) -> [a] -> Maybe a
+myFind f [] = Nothing
+myFind f (x:xs)
+    | f x           = Just x
+    | otherwise     = myFind f xs
+
+myElemIndex :: (Eq a) => a -> [a] -> Maybe Int
+myElemIndex ele lst = mEIHelp ele lst 0
+    where
+        mEIHelp ele [] cnt = Nothing
+        mEIHelp ele (x:xs) cnt
+            | ele == x      = Just cnt
+            | otherwise     = mEIHelp ele xs (cnt + 1)
