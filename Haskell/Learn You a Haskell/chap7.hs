@@ -186,3 +186,6 @@ myLines st = reverse $ myLines_aux st "" []
         myLines_aux (x:xs) curr lst = if x == '\n'
             then myLines_aux xs "" (reverse curr:lst)
             else myLines_aux xs (x:curr) lst
+
+myUnlines :: [String] -> String
+myUnlines = foldl (\acc x -> acc ++ x ++ "\n") ""
