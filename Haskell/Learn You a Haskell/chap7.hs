@@ -182,10 +182,29 @@ myLines :: String -> [String]
 myLines "" = []
 myLines st = reverse $ myLines_aux st "" []
     where
-        myLines_aux "" curr lst = if (length curr) > 0 then reverse curr:lst else lst
-        myLines_aux (x:xs) curr lst = if x == '\n'
-            then myLines_aux xs "" (reverse curr:lst)
-            else myLines_aux xs (x:curr) lst
+        myLines_aux "" curr lst = case length curr of
+            0           -> lst
+            otherwise   -> reverse curr:lst
+        myLines_aux (x:xs) curr lst = case x of
+            '\n'        -> myLines_aux xs "" (reverse curr:lst)
+            otherwise   -> myLines_aux xs (x:curr) lst
 
 myUnlines :: [String] -> String
 myUnlines = foldl (\acc x -> acc ++ x ++ "\n") ""
+
+myWords :: String -> [String]
+myWords "" = []
+myWords st = reverse $ myWords_aux st "" []
+    where
+        myWords_aux "" curr lst = case length curr of
+            0           -> lst
+            otherwise   -> reverse curr:lst
+        myWords_aux (x:xs) curr lst = case x of
+            ' '         -> let rec_lst = case length curr of
+                                0           -> lst
+                                otherwise   -> reverse curr : lst
+                            in myWords_aux xs "" rec_lst
+            otherwise   -> myWords_aux xs (x:curr) lst
+
+myUnwords :: [String] -> String
+myUnwords = init . foldl (\acc x -> acc ++ x ++ " ") ""
