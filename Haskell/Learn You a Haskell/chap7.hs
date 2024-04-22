@@ -177,3 +177,12 @@ myElemIndex1 ele = myFindIndex (== ele)
 
 myElemIndices1 :: (Eq a) => a -> [a] -> [Int]
 myElemIndices1 ele = myFindIndices (== ele)
+
+myLines :: String -> [String]
+myLines "" = []
+myLines st = reverse $ myLines_aux st "" []
+    where
+        myLines_aux "" curr lst = if (length curr) > 0 then reverse curr:lst else lst
+        myLines_aux (x:xs) curr lst = if x == '\n'
+            then myLines_aux xs "" (reverse curr:lst)
+            else myLines_aux xs (x:curr) lst
