@@ -234,3 +234,20 @@ mySetDiff lst1 (y:ys) = mySetDiff rem1 ys
         remove el (x:xs)
             | el == x       = xs
             | otherwise     = x : remove el xs 
+
+myUnion :: (Eq a) => [a] -> [a] -> [a]
+myUnion lst1 [] = lst1
+myUnion lst1 lst2 = reverse $ aux1 (reverse lst1) (reverse lst2)
+    where
+        aux1 l [] = l
+        aux1 l (x:xs) = let ans = aux1 l xs in
+            if x `elem` ans then
+                ans
+            else
+                x:ans
+
+myIntersect :: (Eq a) => [a] -> [a] -> [a]
+myIntersect lst1 lst2 = filter (\x -> x `elem` lst2) lst1
+
+myInsert :: (Ord a) => a -> [a] -> [a]
+myInsert el lst = let (fs,sn) = mySpan (<= el) lst in fs ++ [el] ++ sn
