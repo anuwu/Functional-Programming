@@ -208,3 +208,29 @@ myWords st = reverse $ myWords_aux st "" []
 
 myUnwords :: [String] -> String
 myUnwords = init . foldl (\acc x -> acc ++ x ++ " ") ""
+
+myNub :: (Eq a) => [a] -> [a]
+myNub [] = []
+myNub lst = reverse $ myNub_aux [] lst
+    where
+        myNub_aux ans [] = ans
+        myNub_aux ans (x:xs)
+            | x `elem` ans      = myNub_aux ans xs
+            | otherwise         = myNub_aux (x:ans) xs
+
+myDelete :: (Eq a) => a -> [a] -> [a]
+myDelete el [] = []
+myDelete el (x:xs)
+    | x == el       = xs
+    | otherwise     = myDelete el xs
+
+mySetDiff :: (Eq a) => [a] -> [a] -> [a]
+mySetDiff lst1 [] = lst1
+mySetDiff lst1 (y:ys) = mySetDiff rem1 ys
+    where
+    rem1 = remove y lst1 
+        where
+        remove el [] = []
+        remove el (x:xs)
+            | el == x       = xs
+            | otherwise     = x : remove el xs 
